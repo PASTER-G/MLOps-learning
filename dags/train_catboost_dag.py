@@ -14,7 +14,6 @@ import json
 from pathlib import Path
 import sys
 
-# === Добавляем src в PYTHONPATH ===
 BASE_DIR = Path(__file__).resolve().parents[1]
 sys.path.append(str(BASE_DIR / "src"))
 
@@ -28,8 +27,6 @@ default_args = {
 }
 
 def load_processed_data():
-    """Загрузка предобработанных данных из файлов"""
-    
     X_train = pd.read_csv(f"{BASE_DIR}/data/processed/X_train.csv")
     X_test = pd.read_csv(f"{BASE_DIR}/data/processed/X_test.csv")
     y_train = pd.read_csv(f"{BASE_DIR}/data/processed/y_train.csv").squeeze()
@@ -39,8 +36,6 @@ def load_processed_data():
     return X_train, X_test, y_train, y_test
 
 def train_catboost(**kwargs):
-    """Обучение CatBoost с оптимальным порогом"""
-    
     # Загрузка данных
     X_train, X_test, y_train, y_test = load_processed_data()
     
@@ -121,7 +116,6 @@ def train_catboost(**kwargs):
             print(f"{metric}: {value:.4f}")
 
 def save_metrics_locally(**kwargs):
-    """Сохранение метрик локально"""
     ti = kwargs['ti']
     metrics_path = ti.xcom_pull(key='metrics_path', task_ids='train_catboost')
     

@@ -24,8 +24,6 @@ default_args = {
 }
 
 def load_processed_data():
-    """Загрузка предобработанных данных из файлов"""
-    
     X_train = pd.read_csv(f"{BASE_DIR}/data/processed/X_train.csv")
     X_test = pd.read_csv(f"{BASE_DIR}/data/processed/X_test.csv")
     y_train = pd.read_csv(f"{BASE_DIR}/data/processed/y_train.csv").squeeze()
@@ -35,8 +33,6 @@ def load_processed_data():
     return X_train, X_test, y_train, y_test
 
 def train_logistic_regression(**kwargs):
-    """Обучение Logistic Regression с логированием в MLflow"""
-    
     # Загрузка данных
     X_train, X_test, y_train, y_test = load_processed_data()
     
@@ -122,7 +118,6 @@ def train_logistic_regression(**kwargs):
         print(f"MLflow Run ID: {mlflow.active_run().info.run_id}")
 
 def save_metrics_locally(**kwargs):
-    """Сохранение метрик локально (вместо S3)"""
     ti = kwargs['ti']
     metrics_path = ti.xcom_pull(key='metrics_path', task_ids='train_lr')
     

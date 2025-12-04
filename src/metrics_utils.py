@@ -6,8 +6,6 @@ import tempfile
 import os
 
 def evaluate_with_optimal_threshold_mlflow(y_true, y_proba, run_name="optimal_threshold"):
-    """Версия для Airflow с логированием в MLflow"""
-    
     # 1. ROC-кривая
     fpr, tpr, thresholds = roc_curve(y_true, y_proba)
 

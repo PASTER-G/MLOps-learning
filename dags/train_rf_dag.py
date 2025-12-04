@@ -14,7 +14,6 @@ import json
 from pathlib import Path
 import sys
 
-# === Добавляем src в PYTHONPATH ===
 BASE_DIR = Path(__file__).resolve().parents[1]
 sys.path.append(str(BASE_DIR / "src"))
 
@@ -28,8 +27,6 @@ default_args = {
 }
 
 def load_processed_data():
-    """Загрузка предобработанных данных из файлов"""
-    
     X_train = pd.read_csv(f"{BASE_DIR}/data/processed/X_train.csv")
     X_test = pd.read_csv(f"{BASE_DIR}/data/processed/X_test.csv")
     y_train = pd.read_csv(f"{BASE_DIR}/data/processed/y_train.csv").squeeze()
@@ -39,11 +36,8 @@ def load_processed_data():
     return X_train, X_test, y_train, y_test
 
 def train_random_forest(**kwargs):
-    """Обучение Random Forest с оптимальным порогом"""
-    
     # Загрузка данных
     X_train, X_test, y_train, y_test = load_processed_data()
-    
     # Настройка MLflow
     mlflow.set_tracking_uri("http://mlflow-service:5000")
     mlflow.set_experiment("Random_Forest_Optimal")
@@ -59,7 +53,7 @@ def train_random_forest(**kwargs):
             'max_features': 0.3,
             'random_state': 42,
             'n_jobs': -1,
-            'bootstrap': False            # Убрать бутстрап для ухудшения
+            'bootstrap': False # Убрать бутстрап для ухудшения
         }
         
         # Логирование параметров

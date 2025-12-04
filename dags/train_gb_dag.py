@@ -30,8 +30,6 @@ default_args = {
 }
 
 def load_processed_data():
-    """Загрузка предобработанных данных из файлов"""
-    
     X_train = pd.read_csv(f"{BASE_DIR}/data/processed/X_train.csv")
     X_test = pd.read_csv(f"{BASE_DIR}/data/processed/X_test.csv")
     y_train = pd.read_csv(f"{BASE_DIR}/data/processed/y_train.csv").squeeze()
@@ -41,7 +39,6 @@ def load_processed_data():
     return X_train, X_test, y_train, y_test
 
 def convert_numpy_types(obj):
-    """Рекурсивно преобразует numpy типы в стандартные Python типы"""
     if isinstance(obj, (np.integer, np.int32, np.int64)):
         return int(obj)
     elif isinstance(obj, (np.floating, np.float32, np.float64)):
@@ -56,8 +53,6 @@ def convert_numpy_types(obj):
         return obj
 
 def train_gradient_boosting(**kwargs):
-    """Обучение Gradient Boosting (XGBoost) с оптимальным порогом"""
-    
     # Загрузка данных
     X_train, X_test, y_train, y_test = load_processed_data()
 
@@ -149,7 +144,6 @@ def train_gradient_boosting(**kwargs):
             print(f"{metric}: {value:.4f}")
 
 def save_metrics_locally(**kwargs):
-    """Сохранение метрик локально"""
     ti = kwargs['ti']
     metrics_path = ti.xcom_pull(key='metrics_path', task_ids='train_gb')
     

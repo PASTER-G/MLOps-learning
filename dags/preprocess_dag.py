@@ -5,13 +5,11 @@ from airflow.operators.python import PythonOperator
 from pathlib import Path
 import sys
 
-# === Добавляем src в PYTHONPATH ===
 BASE_DIR = Path(__file__).resolve().parents[1]
 sys.path.append(str(BASE_DIR / "src"))
 
 from preprocess import preprocess_data
 
-# === Параметры DAG ===
 default_args = {
     "owner": "airflow",
     "depends_on_past": False,

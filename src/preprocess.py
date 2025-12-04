@@ -4,7 +4,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 def preprocess_data(input_path: str, output_dir: str):
-    """Загрузка, очистка и подготовка датасета."""
     df = pd.read_csv(input_path)
 
     # Очистка и нормализация названий столбцов
@@ -62,4 +61,4 @@ def preprocess_data(input_path: str, output_dir: str):
     y_train.to_csv(f"{output_dir}/y_train.csv", index=False)
     y_test.to_csv(f"{output_dir}/y_test.csv", index=False)
 
-    print("✅ Preprocessing completed and saved to:", output_dir)
+    print("Preprocessing completed and saved to:", output_dir)
