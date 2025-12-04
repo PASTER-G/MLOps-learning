@@ -27,7 +27,6 @@
 ├── data/
 │ ├── raw/ # Исходные данные
 | | └── dataset.csv # Подготовленный датасет
-│ └── processed/ # Обработанные данные
 ├── docker-compose.yml # Docker компоновка
 ├── Dockerfile # Образ для сервисов
 ├── requirements.txt # Зависимости Python

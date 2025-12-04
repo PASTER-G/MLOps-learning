@@ -33,7 +33,9 @@ with DAG(
         raw_path = str(BASE_DIR / "data" / "raw" / "dataset.csv")
         output_dir = str(BASE_DIR / "data" / "processed")
 
-        preprocess_data(raw_path, output_dir)
+        raw_path.parent.mkdir(parents=True, exist_ok=True)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        preprocess_data(str(raw_path), str(output_dir))
         
     preprocess_task = PythonOperator(
         task_id="preprocess_dataset",
